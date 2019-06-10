@@ -1,0 +1,10 @@
+{
+    "device_unavailable": "Device unavailable.",
+    "wrong_device_type": "Wrong device type: ",
+    "pair":
+    {
+        "intro": "Enter the IP address.",
+        "address": "IP Address",
+        "success": "switchBox device added succesfully."
+    }
+}

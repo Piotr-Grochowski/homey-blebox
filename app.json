@@ -1,0 +1,75 @@
+{
+  "id": "eu.blebox",
+  "version": "1.0.0",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "BleBox"
+  },
+  "description": {
+    "en": "Adds support for BleBox devices."
+  },
+  "dependencies": {
+		"net": "*"
+	},
+  "category": [
+    "appliances"
+  ],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Piotr Grochowski",
+    "email": "piotr@grochowski.org"
+  },
+  "drivers": [
+      {
+        "id": "switchBox",
+        "name": {
+            "en": "switchBox"
+          },
+        "class": "socket",
+        "capabilities": ["onoff"],
+        "images": {
+          "large": "/drivers/switchBox/assets/images/large.png",
+          "small": "/drivers/switchBox/assets/images/small.png"
+        },
+        "pair": [
+          {
+            "id": "pair"            
+          }
+        ],
+        "settings": [
+          {
+            "type": "group",
+            "label": {
+                "en": "General settings"
+            },
+            "children":
+            [
+              {
+                "id": "address",
+                "type": "text",
+                "label": {
+                  "en": "IP Address"
+                }
+              },
+              {
+                "id": "poll_interval",
+                "type": "number",
+                "label": {
+                  "en": "Poll interval [ms]"
+                },
+                "attr": {
+                  "min": 500,
+                  "max": 60000
+                }
+              }
+            ]
+          }
+        ]
+      }
+  ]
+}
