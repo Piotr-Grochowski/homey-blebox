@@ -15,6 +15,102 @@
   "category": [
     "appliances"
   ],
+  "capabilities": {
+    "measure_pm1": {
+      "type": "number",
+      "title": {
+        "en": "PM1.0",
+        "nl": "PM1.0",
+        "de": "PM1.0"
+      },
+      "units": {
+        "en": "ppm"
+      },
+      "insights": true,
+      "icon": "/assets/measure_pm1.svg",
+      "desc": {
+        "en": "Atmospheric Particulate Matter PM1.0 (μg/m3)",
+        "nl": "Deeltjesvormige luchtverontreiniging PM1.0 (μg/m3)",
+        "de": "Atmosphärischer Feinstaub PM1.0 (μg/m3)"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "$flow": {
+        "triggers": [
+          {
+            "id": "measure_pm1_changed",
+            "title": {
+              "en": "The PM1.0 value has changed",
+              "nl": "De PM1.0 waarde is veranderd",
+              "de": "Der PM1.0-Wert hat sich geändert"
+            },
+            "tokens": [
+              {
+                "name": "measure_pm1",
+                "title": {
+                  "en": "PM1.0",
+                  "nl": "PM1.0",
+                  "de": "PM1.0"
+                },
+                "type": "number",
+                "example": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "measure_pm10": {
+      "type": "number",
+      "title": {
+        "en": "PM10",
+        "nl": "PM10",
+        "de": "PM10"
+      },
+      "units": {
+        "en": "ppm"
+      },
+      "insights": true,
+      "icon": "/assets/measure_pm10.svg",
+      "desc": {
+        "en": "Atmospheric Particulate Matter PM10 (μg/m3)",
+        "nl": "Deeltjesvormige luchtverontreiniging PM10 (μg/m3)",
+        "de": "Atmosphärischer Feinstaub PM10 (μg/m3)"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "$flow": {
+        "triggers": [
+          {
+            "id": "measure_pm10_changed",
+            "title": {
+              "en": "The PM10 value has changed",
+              "nl": "De PM10 waarde is veranderd",
+              "de": "Der PM10-Wert hat sich geändert"
+            },
+            "tokens": [
+              {
+                "name": "measure_pm10",
+                "title": {
+                  "en": "PM10",
+                  "nl": "PM10",
+                  "de": "PM10"
+                },
+                "type": "number",
+                "example": 2
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
   "permissions": [],
   "images": {
     "large": "/assets/images/large.png",
@@ -66,6 +162,109 @@
                   "min": 500,
                   "max": 60000
                 }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "switchBoxD",
+        "name": {
+            "en": "switchBoxD"
+          },
+        "class": "socket",
+        "capabilities": ["onoff.relay1", "onoff.relay2"],
+        "capabilitiesOptions": {
+          "onoff.relay1": {
+            "title": {
+              "en": "Relay 1",
+              "nl": "Relay 1"
+            }
+          },
+          "onoff.relay2": {
+            "title": {
+              "en": "Relay 2",
+              "nl": "Relay 2"
+            }
+          }
+        },
+        "images": {
+          "large": "/drivers/switchBox/assets/images/large.png",
+          "small": "/drivers/switchBox/assets/images/small.png"
+        },
+        "pair": [
+          {
+            "id": "pair"            
+          }
+        ],
+        "settings": [
+          {
+            "type": "group",
+            "label": {
+                "en": "General settings"
+            },
+            "children":
+            [
+              {
+                "id": "address",
+                "type": "text",
+                "label": {
+                  "en": "IP Address"
+                }
+              },
+              {
+                "id": "poll_interval",
+                "type": "number",
+                "label": {
+                  "en": "Poll interval [ms]"
+                },
+                "attr": {
+                  "min": 500,
+                  "max": 60000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "airSensor",
+        "name": {
+            "en": "airSensor"
+          },
+        "class": "sensor",
+        "capabilities": ["measure_pm25", "measure_pm1", "measure_pm10"],
+        "images": {
+          "large": "/drivers/airSensor/assets/images/large.png",
+          "small": "/drivers/airSensor/assets/images/small.png"
+        },
+        "pair": [
+          {
+            "id": "pair"            
+          }
+        ],
+        "settings": [
+          {
+            "type": "group",
+            "label": {
+                "en": "General settings"
+            },
+            "children":
+            [
+              {
+                "id": "address",
+                "type": "text",
+                "label": {
+                  "en": "IP Address"
+                }
+              },
+              {
+                "id": "poll_interval",
+                "type": "label",
+                "label": {
+                  "en": "Poll interval [ms]"
+                },
+                "value": "60000"
               }
             ]
           }

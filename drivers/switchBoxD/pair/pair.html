@@ -1,0 +1,110 @@
+<script type="text/javascript">
+
+$(function() {
+  // Connect button pressed
+  $('#connect').click(function() {
+
+    // Hide the messages
+		$('.blebox-ok').hide();
+		$('.blebox-error').hide();
+
+    // Validate IP address
+    var inputaddress = $('#address').val();
+    if (inputaddress != '') 
+    {
+      // IP address is valid, try to connect via backend
+      Homey.emit('addBleBox',{ip:inputaddress},function( err, result ){
+        if (err) {
+          // if an error occured - show the messages
+          $('.blebox-error').show();
+					$('.blebox-error-msg').html(err.message || err.toString() );
+				} else {
+          // No error - show the messages
+  				$('.blebox-error').hide();
+          $('.blebox-ok').show();
+          // Add the device
+          Homey.addDevice({
+				    name	 : result.name,
+            data 	 : 
+              {
+                id: result.id
+              },
+            settings : 
+              {
+                address : result.address,
+                poll_interval : result.poll_interval
+              }
+			      }, function(error, result ) {
+              // If an error occured show the messages
+              if (error) {
+					      $('.blebox-error').show();
+					      $('.blebox-error-msg').html(error.message || error.toString() );
+				      } else {
+                // Success - show the messages and close the wizard
+  				      $('.blebox-error').hide();
+  				      $('.blebox-ok').show();
+                Homey.done();
+              }
+            });
+          }
+      })
+		} else {
+      // The IP address is invalid - show messages
+			$('.blebox-error').show();
+			$('.blebox-error-msg').html( 'Please enter valid IP address.' );
+		}
+	});
+});
+</script>
+    
+<style type="text/css">
+ .form-group {
+    width: 100%;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .form-group label {
+    display: block;
+  }
+  .blebox-status, .blebox-info {
+		display: none;
+	}
+  .blebox-info {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .blebox-info .info-row {
+    min-width: 150px;
+    padding-bottom: 4px;
+  }
+  .blebox-info .info-label {
+    display: inline-block;
+    min-width: 100px;
+    font-weight: 700;
+  }
+  .buttons, .messages {
+    padding-top: 14px;
+  }
+  .button:disabled {
+    color: #ccc;
+  }
+  .button:enabled {
+    background-color: #00c139 !important;
+    color: #fff;
+  }
+</style>
+    
+<p data-i18n="pair.intro">Enter the IP address.</p>
+<div class="pairing">
+  <div class="form-group">
+    <label for="address" data-i18n="pair.address">IP address</label>
+    <input type="text" class="form-control" id="address" placeholder="0.0.0.0">
+  </div>
+  <div class="form-group buttons">
+    <button id="connect" class="button" data-i18n="pair.connect">Connect</button>
+  </div>
+</div>
+<div class="messages">
+  <p class="blebox-status blebox-ok" style="color: #008C23;"><i class="fa fa-check"></i> <span class="blebox-ok-msg" data-i18n="pair.success-switchboxd">switchBoxD device added succesfully.</span></p>
+  <p class="blebox-status blebox-error" style="color: #ff6300;"><i class="fa fa-times"></i> <span class="blebox-error-msg"></span></p>
+</div>
