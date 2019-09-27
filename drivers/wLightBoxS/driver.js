@@ -2,7 +2,7 @@ const Homey = require('homey');
 const util = require('/lib/util.js');
 
 
-module.exports = class switchBoxDCDriver extends Homey.Driver {
+module.exports = class wLightBoxSDriver extends Homey.Driver {
 
 	onPair( socket ) {
 		// called when a user presses Connect on the UI
@@ -11,7 +11,7 @@ module.exports = class switchBoxDCDriver extends Homey.Driver {
 			// Check if this is a real switchBox
 			util.sendGetCommand('/api/device/state',data.ip)
 			.then(result => {
-				if(result.device.type=='switchBox')
+				if(result.device.type=='wLightBoxS')
 				{
 					// Retrieve device data
 					var device_data = {

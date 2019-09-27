@@ -1,6 +1,6 @@
 {
   "id": "eu.blebox",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "name": {
@@ -980,6 +980,669 @@
         ]
       },
       {
+        "id": "wLightBoxS",
+        "name": {
+            "en": "wLightBoxS"
+          },
+        "class": "light",
+        "capabilities": ["onoff","dim"],
+        "images": {
+          "large": "/drivers/wLightBoxS/assets/images/large.png",
+          "small": "/drivers/wLightBoxS/assets/images/small.png"
+        },
+        "pair": [
+          {
+            "id": "pair"            
+          }
+        ],
+        "settings": [
+          {
+            "type": "group",
+            "label": {
+                "en": "General settings"
+            },
+            "children":
+            [
+              {
+                "id": "address",
+                "type": "text",
+                "label": {
+                  "en": "IP Address"
+                }
+              },
+              {
+                "id": "poll_interval",
+                "type": "number",
+                "label": {
+                  "en": "Poll interval [ms]"
+                },
+                "attr": {
+                  "min": 500,
+                  "max": 60000
+                }
+              },
+              {
+                "id": "dimOn",
+                "type": "dropdown",
+                "label": {
+                  "en": "Dim level on ON"
+                },
+                "value": "100",
+                "values": [
+                  {
+                    "id": "previous",
+                    "label": {
+                      "en": "Previous level"
+                    }
+                  },
+                  {
+                    "id": "100",
+                    "label": {
+                      "en": "100 %"
+                    }
+                  },
+                  {
+                    "id": "99",
+                    "label": {
+                      "en": "99 %"
+                    }
+                  },
+                  {
+                    "id": "98",
+                    "label": {
+                      "en": "98 %"
+                    }
+                  },
+                  {
+                    "id": "97",
+                    "label": {
+                      "en": "97 %"
+                    }
+                  },
+                  {
+                    "id": "96",
+                    "label": {
+                      "en": "96 %"
+                    }
+                  },
+                  {
+                    "id": "95",
+                    "label": {
+                      "en": "95 %"
+                    }
+                  },
+                  {
+                    "id": "94",
+                    "label": {
+                      "en": "94 %"
+                    }
+                  },
+                  {
+                    "id": "93",
+                    "label": {
+                      "en": "93 %"
+                    }
+                  },
+                  {
+                    "id": "92",
+                    "label": {
+                      "en": "92 %"
+                    }
+                  },
+                  {
+                    "id": "91",
+                    "label": {
+                      "en": "91 %"
+                    }
+                  },
+                  {
+                    "id": "90",
+                    "label": {
+                      "en": "90 %"
+                    }
+                  },
+                  {
+                    "id": "89",
+                    "label": {
+                      "en": "89 %"
+                    }
+                  },
+                  {
+                    "id": "88",
+                    "label": {
+                      "en": "88 %"
+                    }
+                  },
+                  {
+                    "id": "87",
+                    "label": {
+                      "en": "87 %"
+                    }
+                  },
+                  {
+                    "id": "86",
+                    "label": {
+                      "en": "86 %"
+                    }
+                  },
+                  {
+                    "id": "85",
+                    "label": {
+                      "en": "85 %"
+                    }
+                  },
+                  {
+                    "id": "84",
+                    "label": {
+                      "en": "84 %"
+                    }
+                  },
+                  {
+                    "id": "83",
+                    "label": {
+                      "en": "83 %"
+                    }
+                  },
+                  {
+                    "id": "82",
+                    "label": {
+                      "en": "82 %"
+                    }
+                  },
+                  {
+                    "id": "81",
+                    "label": {
+                      "en": "81 %"
+                    }
+                  },
+                  {
+                    "id": "80",
+                    "label": {
+                      "en": "80 %"
+                    }
+                  },
+                  {
+                    "id": "79",
+                    "label": {
+                      "en": "79 %"
+                    }
+                  },
+                  {
+                    "id": "78",
+                    "label": {
+                      "en": "78 %"
+                    }
+                  },
+                  {
+                    "id": "77",
+                    "label": {
+                      "en": "77 %"
+                    }
+                  },
+                  {
+                    "id": "76",
+                    "label": {
+                      "en": "76 %"
+                    }
+                  },
+                  {
+                    "id": "75",
+                    "label": {
+                      "en": "75 %"
+                    }
+                  },
+                  {
+                    "id": "74",
+                    "label": {
+                      "en": "74 %"
+                    }
+                  },
+                  {
+                    "id": "73",
+                    "label": {
+                      "en": "73 %"
+                    }
+                  },
+                  {
+                    "id": "72",
+                    "label": {
+                      "en": "72 %"
+                    }
+                  },
+                  {
+                    "id": "71",
+                    "label": {
+                      "en": "71 %"
+                    }
+                  },
+                  {
+                    "id": "70",
+                    "label": {
+                      "en": "70 %"
+                    }
+                  },
+                  {
+                    "id": "69",
+                    "label": {
+                      "en": "69 %"
+                    }
+                  },
+                  {
+                    "id": "68",
+                    "label": {
+                      "en": "68 %"
+                    }
+                  },
+                  {
+                    "id": "67",
+                    "label": {
+                      "en": "67 %"
+                    }
+                  },
+                  {
+                    "id": "66",
+                    "label": {
+                      "en": "66 %"
+                    }
+                  },
+                  {
+                    "id": "65",
+                    "label": {
+                      "en": "65 %"
+                    }
+                  },
+                  {
+                    "id": "64",
+                    "label": {
+                      "en": "64 %"
+                    }
+                  },
+                  {
+                    "id": "63",
+                    "label": {
+                      "en": "63 %"
+                    }
+                  },
+                  {
+                    "id": "62",
+                    "label": {
+                      "en": "62 %"
+                    }
+                  },
+                  {
+                    "id": "61",
+                    "label": {
+                      "en": "61 %"
+                    }
+                  },
+                  {
+                    "id": "60",
+                    "label": {
+                      "en": "60 %"
+                    }
+                  },
+                  {
+                    "id": "59",
+                    "label": {
+                      "en": "59 %"
+                    }
+                  },
+                  {
+                    "id": "58",
+                    "label": {
+                      "en": "58 %"
+                    }
+                  },
+                  {
+                    "id": "57",
+                    "label": {
+                      "en": "57 %"
+                    }
+                  },
+                  {
+                    "id": "56",
+                    "label": {
+                      "en": "56 %"
+                    }
+                  },
+                  {
+                    "id": "55",
+                    "label": {
+                      "en": "55 %"
+                    }
+                  },
+                  {
+                    "id": "54",
+                    "label": {
+                      "en": "54 %"
+                    }
+                  },
+                  {
+                    "id": "53",
+                    "label": {
+                      "en": "53 %"
+                    }
+                  },
+                  {
+                    "id": "52",
+                    "label": {
+                      "en": "52 %"
+                    }
+                  },
+                  {
+                    "id": "51",
+                    "label": {
+                      "en": "51 %"
+                    }
+                  },
+                  {
+                    "id": "50",
+                    "label": {
+                      "en": "50 %"
+                    }
+                  },
+                  {
+                    "id": "49",
+                    "label": {
+                      "en": "49 %"
+                    }
+                  },
+                  {
+                    "id": "48",
+                    "label": {
+                      "en": "48 %"
+                    }
+                  },
+                  {
+                    "id": "47",
+                    "label": {
+                      "en": "47 %"
+                    }
+                  },
+                  {
+                    "id": "46",
+                    "label": {
+                      "en": "46 %"
+                    }
+                  },
+                  {
+                    "id": "45",
+                    "label": {
+                      "en": "45 %"
+                    }
+                  },
+                  {
+                    "id": "44",
+                    "label": {
+                      "en": "44 %"
+                    }
+                  },
+                  {
+                    "id": "43",
+                    "label": {
+                      "en": "43 %"
+                    }
+                  },
+                  {
+                    "id": "42",
+                    "label": {
+                      "en": "42 %"
+                    }
+                  },
+                  {
+                    "id": "41",
+                    "label": {
+                      "en": "41 %"
+                    }
+                  },
+                  {
+                    "id": "40",
+                    "label": {
+                      "en": "40 %"
+                    }
+                  },
+                  {
+                    "id": "39",
+                    "label": {
+                      "en": "39 %"
+                    }
+                  },
+                  {
+                    "id": "38",
+                    "label": {
+                      "en": "98 %"
+                    }
+                  },
+                  {
+                    "id": "37",
+                    "label": {
+                      "en": "37 %"
+                    }
+                  },
+                  {
+                    "id": "36",
+                    "label": {
+                      "en": "36 %"
+                    }
+                  },
+                  {
+                    "id": "35",
+                    "label": {
+                      "en": "35 %"
+                    }
+                  },
+                  {
+                    "id": "34",
+                    "label": {
+                      "en": "34 %"
+                    }
+                  },
+                  {
+                    "id": "33",
+                    "label": {
+                      "en": "33 %"
+                    }
+                  },
+                  {
+                    "id": "32",
+                    "label": {
+                      "en": "32 %"
+                    }
+                  },
+                  {
+                    "id": "31",
+                    "label": {
+                      "en": "31 %"
+                    }
+                  },
+                  {
+                    "id": "30",
+                    "label": {
+                      "en": "30 %"
+                    }
+                  },
+                  {
+                    "id": "29",
+                    "label": {
+                      "en": "29 %"
+                    }
+                  },
+                  {
+                    "id": "28",
+                    "label": {
+                      "en": "28 %"
+                    }
+                  },
+                  {
+                    "id": "27",
+                    "label": {
+                      "en": "27 %"
+                    }
+                  },
+                  {
+                    "id": "26",
+                    "label": {
+                      "en": "26 %"
+                    }
+                  },
+                  {
+                    "id": "25",
+                    "label": {
+                      "en": "25 %"
+                    }
+                  },
+                  {
+                    "id": "24",
+                    "label": {
+                      "en": "24 %"
+                    }
+                  },
+                  {
+                    "id": "23",
+                    "label": {
+                      "en": "23 %"
+                    }
+                  },
+                  {
+                    "id": "22",
+                    "label": {
+                      "en": "22 %"
+                    }
+                  },
+                  {
+                    "id": "21",
+                    "label": {
+                      "en": "21 %"
+                    }
+                  },
+                  {
+                    "id": "20",
+                    "label": {
+                      "en": "20 %"
+                    }
+                  },
+                  {
+                    "id": "19",
+                    "label": {
+                      "en": "19 %"
+                    }
+                  },
+                  {
+                    "id": "18",
+                    "label": {
+                      "en": "18 %"
+                    }
+                  },
+                  {
+                    "id": "17",
+                    "label": {
+                      "en": "17 %"
+                    }
+                  },
+                  {
+                    "id": "16",
+                    "label": {
+                      "en": "16 %"
+                    }
+                  },
+                  {
+                    "id": "15",
+                    "label": {
+                      "en": "15 %"
+                    }
+                  },
+                  {
+                    "id": "14",
+                    "label": {
+                      "en": "14 %"
+                    }
+                  },
+                  {
+                    "id": "13",
+                    "label": {
+                      "en": "13 %"
+                    }
+                  },
+                  {
+                    "id": "12",
+                    "label": {
+                      "en": "12 %"
+                    }
+                  },
+                  {
+                    "id": "11",
+                    "label": {
+                      "en": "11 %"
+                    }
+                  },
+                  {
+                    "id": "10",
+                    "label": {
+                      "en": "10 %"
+                    }
+                  },
+                  {
+                    "id": "9",
+                    "label": {
+                      "en": "9 %"
+                    }
+                  },
+                  {
+                    "id": "8",
+                    "label": {
+                      "en": "8 %"
+                    }
+                  },
+                  {
+                    "id": "7",
+                    "label": {
+                      "en": "7 %"
+                    }
+                  },
+                  {
+                    "id": "6",
+                    "label": {
+                      "en": "6 %"
+                    }
+                  },
+                  {
+                    "id": "5",
+                    "label": {
+                      "en": "5 %"
+                    }
+                  },
+                  {
+                    "id": "4",
+                    "label": {
+                      "en": "4 %"
+                    }
+                  },
+                  {
+                    "id": "3",
+                    "label": {
+                      "en": "3 %"
+                    }
+                  },
+                  {
+                    "id": "2",
+                    "label": {
+                      "en": "2 %"
+                    }
+                  },
+                  {
+                    "id": "1",
+                    "label": {
+                      "en": "1 %"
+                    }
+                  }
+                ]
+  
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "wLightBox",
         "name": {
             "en": "wLightBox"
@@ -1065,6 +1728,139 @@
           }
         ]
       }
-  ]
+  ],
+  "flow": {
+    "actions": [
+      {
+        "id": "dim_white",
+        "title": {
+          "en": "Dim white to"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=wLightBox"
+          },
+          {
+            "name": "brightness",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Dim value"
+          }
+        ]
+      },
+      {
+        "id": "dim_red",
+        "title": {
+          "en": "Dim red to"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=wLightBox"
+          },
+          {
+            "name": "brightness",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Dim value"
+          }
+        ]
+      },
+      {
+        "id": "dim_green",
+        "title": {
+          "en": "Dim green to"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=wLightBox"
+          },
+          {
+            "name": "brightness",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Dim value"
+          }
+        ]
+      },      
+      {
+        "id": "dim_blue",
+        "title": {
+          "en": "Dim blue to"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=wLightBox"
+          },
+          {
+            "name": "brightness",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Dim value"
+          }
+        ]
+      },
+      {
+        "id": "set_channels",
+        "title": {
+          "en": "Set channels to"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=wLightBox"
+          },
+          {
+            "name": "red_channel",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Red channel"
+          },
+          {
+            "name": "green_channel",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Green channel"
+          },
+          {
+            "name": "blue_channel",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "Blue channel"
+          },          
+          {
+            "name": "white_channel",
+            "type": "number",
+            "min":  0,
+            "max":  1,
+            "step": 0.01,
+            "placeholder": "White channel"
+          }
+        ]
+      }
+    ]
+  }
 }
 

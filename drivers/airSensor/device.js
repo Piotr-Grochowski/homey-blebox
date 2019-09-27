@@ -114,7 +114,7 @@ module.exports = class airSensorDevice extends Homey.Device {
 			clearInterval(this.pingInterval);
 			util.sendGetCommand('/api/device/state',this.getSetting('address'))
 			.then(result => {
-				if(result.device.type=='airSensor' && result.device.id==this.getData().id)
+				if(result.type=='airSensor' && result.device.id==this.getData().id)
 				{
 					this.setAvailable();
 					this.pollDevice(this.getSetting('poll_interval'));
