@@ -11,6 +11,7 @@
         "success-switchboxdc": "switchBoxDC device added succesfully.",
         "success-dimmerbox": "dimmerBox device added succesfully.",
         "success-wlightbox": "wLightBox device added succesfully.",
-        "success-wlightboxs": "wLightBoxS device added succesfully."
+        "success-wlightboxs": "wLightBoxS device added succesfully.",
+        "success-tempsensor": "tempSensor device added succesfully."
     }
 }
