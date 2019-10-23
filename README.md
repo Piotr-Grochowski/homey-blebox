@@ -16,3 +16,27 @@ At the moment this app supports the following devices:
 - wLightBoxS - Using wLightBoxS you can switch on, off and also adjust brightness of single color LED lights using your smartphone or tablet, also from anywhere in the World. It's an alternative in compare with wLightBox (RGBW LED controller) for people who only want to control one color per device.
 - airSensor - airSensor is your personal air quality sensor - it keeps you informed about the presence of harmful dust suspended in your home and outside.
 - tempSensor - a device that indicates the temperature, equipped with a waterproof measuring probe, operating in the range of -55 to + 125 degrees Celsius.
+
+# Changelog
+
+v.1.7.0
+- added Homey Energy support
+
+v.1.6.0
+- shutterBox support added
+
+v.1.5.0
+- tempSensor support added
+
+v.1.4.0
+- wLightBoxS support added
+- bugfix for switchBoxDC pairing
+
+v.1.3.0
+First public release
+- switchBox support
+- switchBoxDC support
+- switchBoxD support
+- dimmerBox support
+- wLightBox support
+- airSensor support

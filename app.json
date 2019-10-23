@@ -1,7 +1,7 @@
 {
   "id": "eu.blebox",
-  "version": "1.6.0",
-  "compatibility": ">=1.5.0",
+  "version": "1.7.0",
+  "compatibility": ">=3.0.0",
   "sdk": 2,
   "name": {
     "en": "BleBox"
@@ -132,6 +132,12 @@
           "large": "/drivers/switchBox/assets/images/large.png",
           "small": "/drivers/switchBox/assets/images/small.png"
         },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
+        },
         "pair": [
           {
             "id": "pair"            
@@ -177,6 +183,12 @@
         "images": {
           "large": "/drivers/switchBoxDC/assets/images/large.png",
           "small": "/drivers/switchBoxDC/assets/images/small.png"
+        },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
         },
         "pair": [
           {
@@ -238,6 +250,12 @@
           "large": "/drivers/switchBoxD/assets/images/large.png",
           "small": "/drivers/switchBoxD/assets/images/small.png"
         },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
+        },
         "pair": [
           {
             "id": "pair"            
@@ -284,6 +302,11 @@
           "large": "/drivers/airSensor/assets/images/large.png",
           "small": "/drivers/airSensor/assets/images/small.png"
         },
+        "energy": {
+          "approximation": {
+            "usageConstant": 1
+          }
+        },
         "pair": [
           {
             "id": "pair"            
@@ -326,6 +349,11 @@
         "images": {
           "large": "/drivers/tempSensor/assets/images/large.png",
           "small": "/drivers/tempSensor/assets/images/small.png"
+        },
+        "energy": {
+          "approximation": {
+            "usageConstant": 1
+          }
         },
         "pair": [
           {
@@ -372,6 +400,12 @@
         "images": {
           "large": "/drivers/dimmerBox/assets/images/large.png",
           "small": "/drivers/dimmerBox/assets/images/small.png"
+        },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
         },
         "pair": [
           {
@@ -1036,6 +1070,12 @@
           "large": "/drivers/shutterBox/assets/images/large.png",
           "small": "/drivers/shutterBox/assets/images/small.png"
         },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
+        },
         "pair": [
           {
             "id": "pair"            
@@ -1081,6 +1121,12 @@
         "images": {
           "large": "/drivers/wLightBoxS/assets/images/large.png",
           "small": "/drivers/wLightBoxS/assets/images/small.png"
+        },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
         },
         "pair": [
           {
@@ -1776,6 +1822,12 @@
         "images": {
           "large": "/drivers/wLightBox/assets/images/large.png",
           "small": "/drivers/wLightBox/assets/images/small.png"
+        },
+        "energy": {
+          "approximation": {
+            "usageOn": 1, 
+            "usageOff": 1 
+          }
         },
         "pair": [
           {
