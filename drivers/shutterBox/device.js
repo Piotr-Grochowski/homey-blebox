@@ -142,15 +142,15 @@ module.exports = class switchBoxDevice extends Homey.Device {
 				var shutter_position = result.desiredPos.position/100;
 				var shutter_tilt = result.desiredPos.tilt/100;
 
-				if(result.shutter.state == 1) 
+				if(result.state == 1) 
 				{
 					shutter_state = "up";
 				}
-				if(result.shutter.state == 0) 
+				if(result.state == 0) 
 				{
 					shutter_state = "down";
 				}
-				if(result.shutter.state == 3)
+				if(result.state == 3)
 				{
 					shutter_closed = true;
 				}
@@ -199,7 +199,7 @@ module.exports = class switchBoxDevice extends Homey.Device {
 		this.pingInterval = setInterval(() => {
 			util.sendGetCommand('/api/device/state',this.getSetting('address'))
 			.then(result => {
-				if(result.device.type=='shutterBox' && result.device.id==this.getData().id)
+				if(result.type=='shutterBox' && result.id==this.getData().id)
 				{
 			  		this.setAvailable();
 			  		this.pollDevice(this.getSetting('poll_interval'));
