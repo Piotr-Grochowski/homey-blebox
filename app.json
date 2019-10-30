@@ -1,6 +1,6 @@
 {
   "id": "eu.blebox",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "compatibility": ">=3.0.0",
   "sdk": 2,
   "name": {
@@ -121,7 +121,53 @@
     "email": "piotr@grochowski.org"
   },
   "drivers": [
-      {
+    {
+      "id": "gateBox",
+      "name": {
+          "en": "gateBox"
+        },
+      "class": "button",
+      "capabilities": ["button","alarm_contact"],
+      "capabilitiesOptions": {
+        "alarm_contact": {
+          "title": "Gate open alarm"
+        }
+      },
+      "images": {
+        "large": "/drivers/gateBox/assets/images/large.png",
+        "small": "/drivers/gateBox/assets/images/small.png"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 1, 
+          "usageOff": 1 
+        }
+      },
+      "pair": [
+        {
+          "id": "pair"            
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+              "en": "General settings"
+          },
+          "children":
+          [
+            {
+              "id": "address",
+              "type": "text",
+              "label": {
+                "en": "IP Address"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
         "id": "switchBox",
         "name": {
             "en": "switchBox"

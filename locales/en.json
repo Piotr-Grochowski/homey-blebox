@@ -7,6 +7,7 @@
         "address": "IP Address",
         "success-airsensor": "airSensor device added succesfully.",
         "success-switchbox": "switchBox device added succesfully.",
+        "success-gatebox": "gateBox device added succesfully.",
         "success-switchboxd": "switchBoxD device added succesfully.",
         "success-switchboxdc": "switchBoxDC device added succesfully.",
         "success-dimmerbox": "dimmerBox device added succesfully.",
