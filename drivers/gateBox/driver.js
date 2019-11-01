@@ -15,8 +15,8 @@ module.exports = class gateBoxDriver extends Homey.Driver {
 				{
 					// Retrieve device data
 					var device_data = {
-						id: result.device.id,
-						name: result.device.deviceName,
+						id: result.id,
+						name: result.deviceName,
 						address : data.ip,
 						poll_interval: 1000
 					};
@@ -26,7 +26,7 @@ module.exports = class gateBoxDriver extends Homey.Driver {
 				else
 				{
 					// if the device is of wrong type
-					callback(new Error(Homey.__("wrong_device_type")+result.device.type),null)
+					callback(new Error(Homey.__("wrong_device_type")+result.type),null)
 				}
 			})
 			.catch(error => {

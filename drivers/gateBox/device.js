@@ -79,7 +79,7 @@ module.exports = class gateBoxDevice extends Homey.Device {
 		this.pingInterval = setInterval(() => {
 			util.sendGetCommand('/api/device/state',this.getSetting('address'))
 			.then(result => {
-				if(result.type=='gateBox' && result.device.id==this.getData().id)
+				if(result.type=='gateBox' && result.id==this.getData().id)
 				{
 			  		this.setAvailable();
 			  		this.pollDevice(this.getSetting('poll_interval'));

@@ -20,6 +20,9 @@ At the moment this app supports the following devices:
 
 # Changelog
 
+v.1.8.1
+- gateBox driver bugfixes
+
 v.1.8.0
 - added gateBox support
 
