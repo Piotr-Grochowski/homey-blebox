@@ -6,6 +6,7 @@ module.exports = class airSensorDevice extends Homey.Device {
 
 	// Device init
 	onInit() {
+		this.setAvailable();
 
 		// Read the device state
 		util.sendGetCommand('/api/tempsensor/state',this.getSetting('address'))

@@ -5,6 +5,8 @@ module.exports = class switchBoxDDevice extends Homey.Device {
 
 	// Device init
 	onInit() {
+		this.setAvailable();
+
 		// Enable device polling
 		this.pollDevice(this.getSetting('poll_interval'));
 

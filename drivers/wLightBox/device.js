@@ -6,6 +6,8 @@ module.exports = class wLightBoxDevice extends Homey.Device {
 
 	// Device init
 	onInit() {
+		this.setAvailable();
+
 		// Enable device polling
 		this.pollDevice(this.getSetting('poll_interval'));
 

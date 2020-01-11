@@ -3,6 +3,7 @@
   "version": "1.8.1",
   "compatibility": ">=3.0.0",
   "sdk": 2,
+  "brandColor": "#0099FF",
   "name": {
     "en": "BleBox"
   },
@@ -120,6 +121,17 @@
     "name": "Piotr Grochowski",
     "email": "piotr@grochowski.org"
   },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "my_paypal.piotr@grochowski.org"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/Piotr-Grochowski/homey-blebox/issues"
+  },
+  "source": "https://github.com/Piotr-Grochowski/homey-blebox",
   "drivers": [
     {
       "id": "gateBox",

@@ -6,6 +6,8 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 
 	// Device init
 	onInit() {
+		this.setAvailable();
+
 		// Stores last Dim Level > 0. In the beginning it's 100%
 		this.previousDimLevel = 100;
 
