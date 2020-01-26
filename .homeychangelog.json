@@ -1,0 +1,29 @@
+{
+  "1.8.3": {
+    "en": "Minor bugfixes."
+  },
+  "1.8.2": {
+    "en": "Small bugfixes. Changes for the new AppStore."
+  },
+  "1.8.1": {
+    "en": "gateBox driver bugfixes."
+  },
+  "1.8.0": {
+    "en": "Added gateBox support."
+  },
+  "1.7.0": {
+    "en": "Added Homey Energy support. shutterBox bugfixes."
+  },
+  "1.6.0": {
+    "en": "shutterBox support added."
+  },
+  "1.5.0": {
+    "en": "tempSensor support added."
+  },
+  "1.4.0": {
+    "en": "wLightBoxS support added. Bugfix for switchBoxDC pairing."
+  },
+  "1.3.0": {
+    "en": "First public release: switchBox support, switchBoxDC support, switchBoxD support, dimmerBox support, wLightBox support, airSensor support"
+  }
+}

@@ -1,28 +1,95 @@
 const Homey = require('homey');
 const util = require('/lib/util.js');
 
-module.exports = class dimmerBoxDevice extends Homey.Device {
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+module.exports = class dimmerBoxDevice extends Homey.Device {
 
 	// Device init
 	onInit() {
 		this.setAvailable();
+		
+		this.polling = true;
+		this.pinging = false;
+
+		this.addListener('poll', this.pollDevice);
+		this.addListener('ping', this.pingDevice);
 
 		// Stores last Dim Level > 0. In the beginning it's 100%
 		this.previousDimLevel = 100;
 
-		// Enable device polling
-		this.pollDevice(this.getSetting('poll_interval'));
-
 		// register capability listeners
 		this.registerCapabilityListener('onoff', this.onCapabilityOnoff.bind(this));
 		this.registerCapabilityListener('dim', this.onCapabilityDim.bind(this));
+
+		// Enable device polling
+		this.emit('poll');
+	}
+
+	async pollDevice() 
+	{
+		while (this.polling && !this.pinging) {
+			await util.sendGetCommand('/api/dimmer/state',this.getSetting('address'))
+			.then(result => {
+				// On success - update Homey's device state
+				this.setAvailable();
+				let brightness = Math.round(result.dimmer.desiredBrightness/255*100)/100;
+				let onState = false;
+				if(brightness>0)
+				{
+					this.previousDimLevel = brightness;
+					onState = true;
+				}
+				if (brightness != this.getCapabilityValue('dim')) {
+					this.setCapabilityValue('dim', brightness)
+						.catch( err => {
+							this.error(err);
+						})
+				}
+	
+				if (onState != this.getCapabilityValue('onoff')) {
+					this.setCapabilityValue('onoff', onState)
+						.catch( err => {
+							this.error(err);
+						})
+				}
+			})
+			.catch(error => {
+				this.polling = false;
+				this.pinging = true;
+				this.emit('ping');
+				return;
+			});					
+			await delay(this.getSetting('poll_interval'));
+		}  
+    }
+
+	async pingDevice() 
+	{
+		while (!this.polling && this.pinging) {
+			this.setUnavailable();
+			await util.sendGetCommand('/api/device/state',this.getSetting('address'))
+			.then(result => {
+				if(result.device.type=='dimmerBox' && result.device.id==this.getData().id)
+				{
+					this.setAvailable();
+					this.polling = true;
+					this.pinging = false;
+					this.emit('poll');
+					return;
+				}
+			})
+			.catch(error => {
+				this.log('Device is not reachable, pinging every 60 seconds to see if it comes online again.');
+			})
+			await delay(60000);
+		}
 	}
 
 	// Cancel pooling when device is deleted
 	onDeleted() {
-		clearInterval(this.pollingInterval);
-		clearInterval(this.pingInterval);
+		this.polling = false;
+		this.pinging = false;
 	}
 
 	// this method is called when the Device has requested a state change (turned on or off)
@@ -42,12 +109,9 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 				// Error occured
 				// Set the device as unavailable
 				this.log(error);
-				this.setUnavailable(Homey.__("device_unavailable"));
-				clearInterval(this.pollingInterval);
-				clearInterval(this.pingInterval);
-		
-				// check if device becomes available every 30s
-				this.pingDevice();			
+				this.polling = false;
+				this.pinging = true;
+				this.emit('ping');
 			})
 		}
         else
@@ -58,12 +122,10 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 				this.log(error);
 				// Error occured
 				// Set the device as unavailable
-				this.setUnavailable(Homey.__("device_unavailable"));
-				clearInterval(this.pollingInterval);
-				clearInterval(this.pingInterval);
+				this.polling = false;
+				this.pinging = true;
+				this.emit('ping');
 
-				// check if device becomes available every 60s
-				this.pingDevice();			
 			})
 		}
 	}
@@ -71,88 +133,25 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 	// this method is called when the Device has requested a state change (turned on or off)
 	async onCapabilityDim( value, opts ) {
 
-		var hexBrightness = Math.round(value*255).toString(16);
+		let hexBrightness = Math.round(value*255).toString(16);
 
 		// Dim the device
 		util.sendGetCommand('/s/'+hexBrightness,this.getSetting('address'))
 		.catch(error => {
 			// Error occured
 			// Set the device as unavailable
-			this.log(error);
-			this.setUnavailable(Homey.__("device_unavailable"));
-			clearInterval(this.pollingInterval);
-			clearInterval(this.pingInterval);
-	
-			// check if device becomes available every 60s
-			this.pingDevice();			
+			this.polling = false;
+			this.pinging = true;
+			this.emit('ping');
 		})
 	}
 
-
+/*
 	async onSettings( oldSettingsObj, newSettingsObj, changedKeysArr, callback ) {
 		// run when the user has changed the device's settings in Homey.
-	
-		clearInterval(this.pollingInterval);
-    	clearInterval(this.pingInterval);
-		this.pollDevice(newSettingsObj.poll_interval);
+		this.pinging = false;
+		this.polling = true;
+		this.emit('poll');
 	}
-
-	pollDevice(interval) {
-		clearInterval(this.pollingInterval);
-    	clearInterval(this.pingInterval);
-
-		// Check the physical device state and update Homey's device state
-		this.pollingInterval = setInterval(() => {
-			// Read the device state
-			util.sendGetCommand('/api/dimmer/state',this.getSetting('address'))
-			.then(result => {
-				// On success - update Homey's device state
-				var brightness = Math.round(result.dimmer.desiredBrightness/255*100)/100;
-				var onState = false;
-				if(brightness>0)
-				{
-					this.previousDimLevel = brightness;
-					onState = true;
-				}
-				if (brightness != this.getCapabilityValue('dim')) {
-					this.setCapabilityValue('dim', brightness)
-						.catch( err => {
-							this.error(err);
-						})
-				}
-
-				if (onState != this.getCapabilityValue('onoff')) {
-					this.setCapabilityValue('onoff', onState)
-						.catch( err => {
-							this.error(err);
-						})
-				}
-				
-			})
-			.catch(error => {
-				this.setUnavailable(Homey.__("device_unavailable"));
-				this.pingDevice();			
-			})
-		}, interval);
-	}
-
-	pingDevice() {
-		// This function checks every 60s if device becomes available
-		clearInterval(this.pollingInterval);
-		clearInterval(this.pingInterval);
-	
-		this.pingInterval = setInterval(() => {
-			util.sendGetCommand('/api/device/state',this.getSetting('address'))
-			.then(result => {
-				if(result.device.type=='dimmerBox' && result.device.id==this.getData().id)
-				{
-			  		this.setAvailable();
-			  		this.pollDevice(this.getSetting('poll_interval'));
-				}
-			})
-			.catch(error => {
-			  this.log('Device is not reachable, pinging every 60 seconds to see if it comes online again.');
-			})
-		}, 60000);
-	  }
+*/
 }

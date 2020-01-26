@@ -20,6 +20,15 @@ At the moment this app supports the following devices:
 
 # Changelog
 
+v.2.0.0
+- total code rewrite for better memory allocation
+
+v.1.8.4
+- memory optimisations
+
+v.1.8.3
+- minor bugfixes
+
 v.1.8.2
 - small bugfixes
 - changes for the new AppStore

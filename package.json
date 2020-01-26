@@ -1,24 +1,26 @@
 {
-    "name": "eu.blebox",
-    "version": "1.8.1",
-    "description": "Adds support for BleBox devices.",
-    "main": "app.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Piotr-Grochowski/homey-blebox.git"
-    },
-    "bugs": {
-      "url": "https://github.com/Piotr-Grochowski/homey-blebox/issues"
-    },    
-    "keywords": [
-      "blebox"
-    ],
-    "author": "Piotr Grochowski",
-    "license": "MIT",
-    "dependencies": {
-      "node-fetch": "^2.6.0"
-    }
+  "name": "eu.blebox",
+  "version": "2.0.0",
+  "description": "Adds support for BleBox devices.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Piotr-Grochowski/homey-blebox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Piotr-Grochowski/homey-blebox/issues"
+  },
+  "keywords": [
+    "blebox"
+  ],
+  "author": "Piotr Grochowski",
+  "license": "MIT",
+  "dependencies": {
+    "athom-cli": "^3.0.2",
+    "http-min": "^2.0.1",
+    "npm": "^6.13.6"
   }
+}

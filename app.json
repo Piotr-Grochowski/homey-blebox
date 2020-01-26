@@ -1,6 +1,6 @@
 {
   "id": "eu.blebox",
-  "version": "1.8.1",
+  "version": "2.0.0",
   "compatibility": ">=3.0.0",
   "sdk": 2,
   "brandColor": "#0099FF",
@@ -124,7 +124,7 @@
   "contributing": {
     "donate": {
       "paypal": {
-        "username": "my_paypal.piotr@grochowski.org"
+        "username": "GrochowskiPiotr"
       }
     }
   },
