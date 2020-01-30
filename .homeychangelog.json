@@ -25,5 +25,11 @@
   },
   "1.3.0": {
     "en": "First public release: switchBox support, switchBoxDC support, switchBoxD support, dimmerBox support, wLightBox support, airSensor support"
+  },
+  "2.0.0": {
+    "en": "Total rewrite for better memory allocation."
+  },
+  "2.1.0": {
+    "en": "doorBox support added. gateBox pooling bug fixed."
   }
 }

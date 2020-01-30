@@ -17,6 +17,7 @@ At the moment this app supports the following devices:
 - airSensor - airSensor is your personal air quality sensor - it keeps you informed about the presence of harmful dust suspended in your home and outside.
 - tempSensor - a device that indicates the temperature, equipped with a waterproof measuring probe, operating in the range of -55 to + 125 degrees Celsius.
 - gateBox - gateBox allows you to not only open and close gates, but also check on their status 
+- doorBox - an integrated, miniature controller: electric bolt lock, electric strikes and safety devices designed for access control
 
 # Changelog
 

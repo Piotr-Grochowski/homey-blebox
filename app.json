@@ -1,6 +1,6 @@
 {
   "id": "eu.blebox",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "compatibility": ">=3.0.0",
   "sdk": 2,
   "brandColor": "#0099FF",
@@ -145,6 +145,58 @@
           "title": "Gate open alarm"
         }
       },
+      "images": {
+        "large": "/drivers/gateBox/assets/images/large.png",
+        "small": "/drivers/gateBox/assets/images/small.png"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 1, 
+          "usageOff": 1 
+        }
+      },
+      "pair": [
+        {
+          "id": "pair"            
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+              "en": "General settings"
+          },
+          "children":
+          [
+            {
+              "id": "address",
+              "type": "text",
+              "label": {
+                "en": "IP Address"
+              }
+            },
+            {
+              "id": "poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Poll interval [ms]"
+              },
+              "attr": {
+                "min": 500,
+                "max": 60000
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "doorBox",
+      "name": {
+          "en": "doorBox"
+        },
+      "class": "button",
+      "capabilities": ["button"],
       "images": {
         "large": "/drivers/gateBox/assets/images/large.png",
         "small": "/drivers/gateBox/assets/images/small.png"

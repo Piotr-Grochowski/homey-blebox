@@ -14,6 +14,7 @@
         "success-wlightbox": "wLightBox device added succesfully.",
         "success-shutterbox": "shutterBox device added succesfully.",
         "success-wlightboxs": "wLightBoxS device added succesfully.",
-        "success-tempsensor": "tempSensor device added succesfully."
+        "success-tempsensor": "tempSensor device added succesfully.",
+        "success-doorbox": "doorBox device added succesfully."
     }
 }
