@@ -5,6 +5,8 @@
     {
         "intro": "Enter the IP address.",
         "address": "IP Address",
+        "username": "Username",
+        "password": "Password",
         "success-airsensor": "airSensor device added succesfully.",
         "success-switchbox": "switchBox device added succesfully.",
         "success-gatebox": "gateBox device added succesfully.",

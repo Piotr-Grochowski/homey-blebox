@@ -13,6 +13,16 @@ class BleBoxApp extends Homey.App {
 		let dimGreenAction = new Homey.FlowCardAction('dim_green');
 		let dimBlueAction = new Homey.FlowCardAction('dim_blue');
 		let setChannelsAction = new Homey.FlowCardAction('set_channels');
+		let moveToFavoritePosition = new Homey.FlowCardAction('move_to_favorite_pos');
+
+		moveToFavoritePosition
+		  .register()
+		  .registerRunListener(( args, state ) => {
+
+			var addr = args.my_device.getSetting('address');
+			return util.sendGetCommand('/s/f',args.my_device.getSetting('address'));
+		});
+
 
 		dimWhiteAction
 		  .register()

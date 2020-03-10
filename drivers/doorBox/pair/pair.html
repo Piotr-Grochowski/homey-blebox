@@ -10,10 +10,12 @@ $(function() {
 
     // Validate IP address
     var inputaddress = $('#address').val();
+    var user = $('#username').val();
+    var pass = $('#password').val();
     if (inputaddress != '') 
     {
       // IP address is valid, try to connect via backend
-      Homey.emit('addBleBox',{ip:inputaddress},function( err, result ){
+      Homey.emit('addBleBox',{ip:inputaddress, username:user, password:pass},function( err, result ){
         if (err) {
           // if an error occured - show the messages
           $('.blebox-error').show();
@@ -32,7 +34,9 @@ $(function() {
             settings : 
               {
                 address : result.address,
-                poll_interval : result.poll_interval
+                poll_interval : result.poll_interval,
+                username: result.user,
+                password: result.pass
               }
 			      }, function(error, result ) {
               // If an error occured show the messages
@@ -99,6 +103,14 @@ $(function() {
   <div class="form-group">
     <label for="address" data-i18n="pair.address">IP address</label>
     <input type="text" class="form-control" id="address" placeholder="0.0.0.0">
+  </div>
+  <div class="form-group">
+    <label for="address" data-i18n="pair.username">Username</label>
+    <input type="text" class="form-control" id="username">
+  </div>
+  <div class="form-group">
+    <label for="address" data-i18n="pair.password">Password</label>
+    <input type="password" class="form-control" id="password">
   </div>
   <div class="form-group buttons">
     <button id="connect" class="button" data-i18n="pair.connect">Connect</button>

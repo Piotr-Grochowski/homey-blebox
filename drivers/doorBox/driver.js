@@ -9,7 +9,7 @@ module.exports = class doorBoxDriver extends Homey.Driver {
 		socket.on('addBleBox', function( data, callback ) {
 			
 			// Check if this is a real switchBox
-			util.sendGetCommand('/api/device/state',data.ip)
+			util.sendGetCommandAuth('/api/device/state',data.ip,data.username,data.password)
 			.then(result => {
 				if(result.type=='gateBox')
 				{
@@ -18,7 +18,9 @@ module.exports = class doorBoxDriver extends Homey.Driver {
 						id: result.id,
 						name: result.deviceName,
 						address : data.ip,
-						poll_interval: 1000
+						poll_interval: 1000,
+						user: data.username,
+						pass: data.password
 					};
 					// and pass it back to UI
 					callback(null,device_data);		

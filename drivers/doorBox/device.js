@@ -19,7 +19,7 @@ module.exports = class doorBoxDevice extends Homey.Device {
 	{
 		while (this.pinging) {
 			this.setUnavailable();
-			await util.sendGetCommand('/api/device/state',this.getSetting('address'))
+			await util.sendGetCommandAuth('/api/device/state',this.getSetting('address'),this.getSetting('username'),this.getSetting('password'))
 			.then(result => {
 				if(result.type=='gateBox' && result.id==this.getData().id)
 				{
@@ -45,7 +45,7 @@ module.exports = class doorBoxDevice extends Homey.Device {
 	async onCapabilityButton( value, opts ) {
 
 		// send a command to primary output
-		util.sendGetCommand('/s/p',this.getSetting('address'))
+		util.sendGetCommandAuth('/s/p',this.getSetting('address'),this.getSetting('username'),this.getSetting('password'))
 		.catch(error => {
 				// Error occured
 				// Set the device as unavailable

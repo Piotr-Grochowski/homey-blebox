@@ -11,14 +11,15 @@ module.exports = class switchBoxDriver extends Homey.Driver {
 			// Check if this is a real switchBox
 			util.sendGetCommand('/api/device/state',data.ip)
 			.then(result => {
-				if(result.type=='shutterBox')
+				if(result.device.type=='shutterBox')
 				{
 					// Retrieve device data
 					var device_data = {
-						id: result.id,
-						name: result.deviceName,
+						id: result.device.id,
+						name: result.device.deviceName,
 						address : data.ip,
-						poll_interval: 1000
+						poll_interval: 1000,
+						direction_swap: false
 					};
 					// and pass it back to UI
 					callback(null,device_data);		

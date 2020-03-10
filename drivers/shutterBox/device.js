@@ -17,9 +17,16 @@ module.exports = class switchBoxDevice extends Homey.Device {
 
 		// register a capability listener
 		this.registerCapabilityListener('windowcoverings_state', this.onCapabilityState.bind(this));
-		this.registerCapabilityListener('windowcoverings_tilt_set', this.onCapabilityTiltSet.bind(this));
 		this.registerCapabilityListener('windowcoverings_set', this.onCapabilityPositionSet.bind(this));
 		this.registerCapabilityListener('windowcoverings_closed', this.onCapabilityClosed.bind(this));
+		this.registerCapabilityListener('favorite_position_button', this.onCapabilityButton.bind(this));
+
+		util.sendGetCommand('/api/shutter/extended/state',this.getSetting('address'))
+		.then(result => {
+			if(result.shutter.controlType!=3)
+				this.removeCapability('windowcoverings_tilt_set');
+		})
+		.catch(error => {});					
 
 		// Enable device polling
 		this.emit('poll');
@@ -34,18 +41,22 @@ module.exports = class switchBoxDevice extends Homey.Device {
 				this.setAvailable();
 				let shutter_state = 'idle';
 				let shutter_closed = false;
-				let shutter_position = result.desiredPos.position/100;
-				let shutter_tilt = result.desiredPos.tilt/100;
+				let shutter_position = result.shutter.desiredPos.position/100;
+				if(this.getSetting('direction_swap'))
+				{
+					shutter_position = 1.00-shutter_position;
+				}
+				let shutter_tilt = result.shutter.desiredPos.tilt/100;
 	
-				if(result.state == 1) 
+				if(result.shutter.state == 1) 
 				{
 					shutter_state = "up";
 				}
-				if(result.state == 0) 
+				if(result.shutter.state == 0) 
 				{
 					shutter_state = "down";
 				}
-				if(result.state == 3)
+				if(result.shutter.state == 3)
 				{
 					shutter_closed = true;
 				}
@@ -96,7 +107,7 @@ module.exports = class switchBoxDevice extends Homey.Device {
 			this.setUnavailable();
 			await util.sendGetCommand('/api/device/state',this.getSetting('address'))
 			.then(result => {
-				if(result.type=='shutterBox' && result.id==this.getData().id)
+				if(result.device.type=='shutterBox' && result.device.id==this.getData().id)
 				{
 					this.setAvailable();
 					this.polling = true;
@@ -149,6 +160,19 @@ module.exports = class switchBoxDevice extends Homey.Device {
 			})
 		}
 
+        if(value=='idle')
+        {
+			// Move device up
+			util.sendGetCommand('/s/s',this.getSetting('address'))
+			.catch(error => {
+				// Error occured
+				// Set the device as unavailable
+				this.log(error);
+				this.polling = false;
+				this.pinging = true;
+				this.emit('ping');
+			})
+		}
 	}
 
 	// this method is called when the Device has requested a tilt change
@@ -175,6 +199,11 @@ module.exports = class switchBoxDevice extends Homey.Device {
 		// Change position
 		var posValue = Math.round(value*100).toString();
 
+		if(this.getSetting('direction_swap'))
+		{
+			posValue = Math.round((1.00-value)*100).toString();
+		}
+
 		util.sendGetCommand('/s/p/'+posValue,this.getSetting('address'))
 		.catch(error => {
 			// Error occured
@@ -190,18 +219,48 @@ module.exports = class switchBoxDevice extends Homey.Device {
 	// this method is called when the Device has requested to close
 	async onCapabilityClosed( value, opts ) {
 
-		// Change position
-		var posValue = Math.round(value*100).toString();
+        if(value==false)
+        {
+			// Move device up
+			util.sendGetCommand('/s/u',this.getSetting('address'))
+			.catch(error => {
+				// Error occured
+				// Set the device as unavailable
+				this.log(error);
+				this.polling = false;
+				this.pinging = true;
+				this.emit('ping');
+			})
+		}
 
-		util.sendGetCommand('/s/d',this.getSetting('address'))
-		.catch(error => {
-			// Error occured
-			// Set the device as unavailable
-			this.log(error);
-			this.polling = false;
-			this.pinging = true;
-			this.emit('ping');
-		})
+        if(value==true)
+        {
+			// Move device up
+			util.sendGetCommand('/s/d',this.getSetting('address'))
+			.catch(error => {
+				// Error occured
+				// Set the device as unavailable
+				this.log(error);
+				this.polling = false;
+				this.pinging = true;
+				this.emit('ping');
+			})
+		}
 
 	}
+
+	// this method is called when the Device has requested a state change (button pressed)
+	async onCapabilityButton( value, opts ) {
+
+		// send a command to primary output
+		util.sendGetCommand('/s/f',this.getSetting('address'))
+		.catch(error => {
+				// Error occured
+				// Set the device as unavailable
+				this.log(error);
+				this.pinging = true;
+				this.emit('ping');
+		})
+	}
+	
 }

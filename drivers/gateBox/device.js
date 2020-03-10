@@ -25,7 +25,7 @@ module.exports = class gateBoxDevice extends Homey.Device {
 	async pollDevice() 
 	{
 		while (this.polling && !this.pinging) {
-			await util.sendGetCommand('/api/gate/state',this.getSetting('address'))
+			await util.sendGetCommandAuth('/api/gate/state',this.getSetting('address'),this.getSetting('username'),this.getSetting('password'))
 			.then(result => {
 				// On success - update Homey's device state
 				this.setAvailable();
@@ -54,7 +54,7 @@ module.exports = class gateBoxDevice extends Homey.Device {
 	{
 		while (!this.polling && this.pinging) {
 			this.setUnavailable();
-			await util.sendGetCommand('/api/device/state',this.getSetting('address'))
+			await util.sendGetCommandAuth('/api/device/state',this.getSetting('address'),this.getSetting('username'),this.getSetting('password'))
 			.then(result => {
 				if(result.type=='gateBox' && result.id==this.getData().id)
 				{
@@ -83,7 +83,7 @@ module.exports = class gateBoxDevice extends Homey.Device {
 	async onCapabilityButton( value, opts ) {
 
 		// send a command to primary output
-		util.sendGetCommand('/s/p',this.getSetting('address'))
+		util.sendGetCommandAuth('/s/p',this.getSetting('address'),this.getSetting('username'),this.getSetting('password'))
 		.catch(error => {
 				// Error occured
 				// Set the device as unavailable

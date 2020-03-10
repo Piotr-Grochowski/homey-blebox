@@ -31,5 +31,32 @@
   },
   "2.1.0": {
     "en": "doorBox support added. gateBox pooling bug fixed."
+  },
+  "2.1.1": {
+    "en": "shutterBox bugfix"
+  },
+  "2.1.2": {
+    "en": "another shutterBox bugfixes"
+  },
+  "2.1.5": {
+    "en": "added new shutterBox functionalities"
+  },
+  "2.1.6": {
+    "en": "shutterBox move to favorite position flow action added"
+  },
+  "2.1.7": {
+    "en": "shutterBox flow bugfix"
+  },
+  "2.1.8": {
+    "en": "shutterBox Tilt detection"
+  },
+  "2.1.9": {
+    "en": "bugfix"
+  },
+  "2.1.10": {
+    "en": "bugfix"
+  },
+  "2.2.0": {
+    "en": "gateBox and doorBox user authentication added"
   }
 }

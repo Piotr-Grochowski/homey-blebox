@@ -20,6 +20,30 @@ At the moment this app supports the following devices:
 - doorBox - an integrated, miniature controller: electric bolt lock, electric strikes and safety devices designed for access control
 
 # Changelog
+v.2.2.0
+- gateBox and doorBox user authentication added
+
+v.2.1.8
+- shutterBox Tilt detection
+
+v.2.1.7
+- shutterBox flow bugfix
+
+v.2.1.6
+- shutterBox move to favorite position flow action added
+
+v.2.1.5
+- added new shutterBox functionalities
+
+v.2.1.2
+- another shutterBox bugfixes
+
+v.2.1.1
+- shutterBox bugfix
+
+v.2.1.0
+- doorBox support added
+- gateBox pooling bug fixed
 
 v.2.0.0
 - total code rewrite for better memory allocation
