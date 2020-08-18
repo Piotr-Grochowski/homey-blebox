@@ -9,17 +9,50 @@ module.exports = class switchBoxDevice extends Homey.Device {
 	onInit() {
 		this.setAvailable();
 
-		this.polling = true;
-		this.pinging = false;
-
 		this.addListener('poll', this.pollDevice);
 		this.addListener('ping', this.pingDevice);
 
 		// register a capability listener
 		this.registerCapabilityListener('onoff', this.onCapabilityOnoff.bind(this));
 
-		// Enable device polling
-		this.emit('poll');
+		util.sendGetCommand('/info',this.getSetting('address'))
+		.then(result => {
+			if(result.device.type=='switchBox' && result.device.id==this.getData().id)
+			{
+				if(result.device.apiLevel=='20200229')
+				{
+					this.setSettings({
+						product: result.device.product,
+						hv: result.device.hv,
+						fv: result.device.fv,
+						apiLevel: result.device.apiLevel
+					});
+					this.polling = true;
+					this.pinging = false;
+					this.emit('poll');
+							
+					// Enable device polling
+					this.emit('poll');
+
+				}
+				else
+				{
+					this.log('Device API level is not supported. Expected: 20200229, installed: '+result.device.apiLevel);
+					this.polling = false;
+					this.pinging = true;
+
+					// Enable device pinging
+					this.emit('ping');
+				}
+			}
+		})
+		.catch(error => {
+			this.log('Device is not reachable, pinging every 60 seconds to see if it comes online again.');
+			this.polling = false;
+			this.pinging = true;
+			// Enable device pinging
+			this.emit('ping');
+		})
 
 	}
 
@@ -27,18 +60,36 @@ module.exports = class switchBoxDevice extends Homey.Device {
 	{
 		while (this.polling && !this.pinging) {
 			// Read the device state
-			await util.sendGetCommand('/api/relay/state',this.getSetting('address'))
+			await util.sendGetCommand('/state',this.getSetting('address'))
 			.then(result => {
 				// On success - update Homey's device state
 				this.setAvailable();
 				let state = false;
-				if(result[0].state==1) state = true;
+				if(result.relays[0].state==1) state = true;
 				
 				if (state != this.getCapabilityValue('onoff')) {
 					this.setCapabilityValue('onoff', state)
 						.catch( err => {
 							this.error(err);
 						})
+					
+					let tokens = {};
+				    let states = {};
+
+					this._driver = this.getDriver();
+					if(state==false)
+					{
+	    				this._driver.ready(() => {
+								this._driver.triggerTurnedOffFromOutside( this, tokens, states );
+							});
+					}
+					else
+					{
+	    				this._driver.ready(() => {
+								this._driver.triggerTurnedOnFromOutside( this, tokens, states );
+							});
+					}
+    				
 				}
 			})
 			.catch(error => {
@@ -56,15 +107,29 @@ module.exports = class switchBoxDevice extends Homey.Device {
 	{
 		while (!this.polling && this.pinging) {
 			this.setUnavailable();
-			await util.sendGetCommand('/api/device/state',this.getSetting('address'))
+			await util.sendGetCommand('/info',this.getSetting('address'))
 			.then(result => {
 				if(result.device.type=='switchBox' && result.device.id==this.getData().id)
 				{
-					this.setAvailable();
-					this.polling = true;
-					this.pinging = false;
-					this.emit('poll');
-					return;
+					if(result.device.apiLevel=='20200229')
+					{
+						this.setSettings({
+							product: result.device.product,
+							hv: result.device.hv,
+							fv: result.device.fv,
+							apiLevel: result.device.apiLevel
+						});
+	
+						this.setAvailable();
+						this.polling = true;
+						this.pinging = false;
+						this.emit('poll');
+						return;
+					}
+					else
+					{
+						this.log('Device API level is not supported. Expected: 20200229, installed: '+result.device.apiLevel);
+					}
 				}
 			})
 			.catch(error => {

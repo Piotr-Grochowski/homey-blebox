@@ -58,5 +58,8 @@
   },
   "2.2.0": {
     "en": "gateBox and doorBox user authentication added"
+  },
+  "2.3.0": {
+    "en": "1. switchBox driver updated to API level 20200229. 2. switchBox device info added to settings page. 3. New switchBox trigger flow cards added (fires when the device was turned on/off outside of homey, e.g. with a wall switch)."
   }
 }

@@ -1,6 +1,6 @@
 {
   "id": "eu.blebox",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "compatibility": ">=3.0.0",
   "sdk": 2,
   "brandColor": "#0099FF",
@@ -325,6 +325,43 @@
                 "attr": {
                   "min": 500,
                   "max": 60000
+                }
+              }
+            ]
+          },
+          {
+            "type": "group",
+            "label": {
+                "en": "Device properties"
+            },
+            "children":
+            [
+              {
+                "id": "product",
+                "type": "label",
+                "label": {
+                  "en": "Product name"
+                }
+              },
+              {
+                "id": "apiLevel",
+                "type": "label",
+                "label": {
+                  "en": "API Level"
+                }
+              },
+              {
+                "id": "hv",
+                "type": "label",
+                "label": {
+                  "en": "Hardware version"
+                }
+              },
+              {
+                "id": "fv",
+                "type": "label",
+                "label": {
+                  "en": "Firmware version"
                 }
               }
             ]
@@ -2046,6 +2083,35 @@
       }
   ],
   "flow": {
+    "triggers": [
+      {
+        "id": "switchbox_turned_on_from_outside",
+        "title": {
+          "en": "Turned On outside of Homey"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=switchBox"
+          }
+        ]
+      },
+      {
+        "id": "switchbox_turned_off_from_outside",
+        "title": {
+          "en": "Turned Off outside of Homey"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=switchBox"
+          }
+        ]
+      }
+
+    ],
     "actions": [
       {
         "id": "move_to_favorite_pos",

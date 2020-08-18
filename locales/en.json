@@ -1,6 +1,8 @@
 {
     "device_unavailable": "Device unavailable.",
     "wrong_device_type": "Wrong device type: ",
+    "wrong_api_level": "Wrong API Level: ",
+    "expected_api_level": "Expected API Level: ",
     "pair":
     {
         "intro": "Enter the IP address.",

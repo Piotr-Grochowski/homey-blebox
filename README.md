@@ -20,6 +20,11 @@ At the moment this app supports the following devices:
 - doorBox - an integrated, miniature controller: electric bolt lock, electric strikes and safety devices designed for access control
 
 # Changelog
+v.2.3.0
+- switchBox driver updated to latest API level (20200229). You might need to update your device to latest firmware.
+- added information fields to switchBox settings page (hardware and firmware versions, API level, product name)
+- added new flow triggers for switchBox device (fires when the device is turned on/off outside of homey - e.g. with a wall switch)
+
 v.2.2.0
 - gateBox and doorBox user authentication added
 
