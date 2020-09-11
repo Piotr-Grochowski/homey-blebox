@@ -29,7 +29,6 @@ module.exports = class switchBoxDevice extends Homey.Device {
 					});
 					this.polling = true;
 					this.pinging = false;
-					this.emit('poll');
 							
 					// Enable device polling
 					this.emit('poll');

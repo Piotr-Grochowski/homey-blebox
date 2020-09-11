@@ -61,5 +61,8 @@
   },
   "2.3.0": {
     "en": "1. switchBox driver updated to API level 20200229. 2. switchBox device info added to settings page. 3. New switchBox trigger flow cards added (fires when the device was turned on/off outside of homey, e.g. with a wall switch)."
+  },
+  "2.4.0": {
+    "en": "switchBox driver bugfix (double poll problem). Added information fields to dimmerBox settings page (hardware and firmware versions, product name). Added new flow triggers for dimmerBox device (fires when the device is turned on/off outside of homey - e.g. with a wall switch)."
   }
 }

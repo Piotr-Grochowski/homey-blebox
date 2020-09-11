@@ -32,7 +32,10 @@ $(function() {
             settings : 
               {
                 address : result.address,
-                poll_interval : result.poll_interval
+                poll_interval : result.poll_interval,
+                product: result.product,
+                hv: result.hv,
+                fv: result.fv
               }
 			      }, function(error, result ) {
               // If an error occured show the messages

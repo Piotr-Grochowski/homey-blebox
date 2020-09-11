@@ -1,6 +1,6 @@
 {
   "id": "eu.blebox",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "compatibility": ">=3.0.0",
   "sdk": 2,
   "brandColor": "#0099FF",
@@ -1251,6 +1251,36 @@
   
               }
             ]
+          },
+          {
+            "type": "group",
+            "label": {
+                "en": "Device properties"
+            },
+            "children":
+            [
+              {
+                "id": "product",
+                "type": "label",
+                "label": {
+                  "en": "Product name"
+                }
+              },
+              {
+                "id": "hv",
+                "type": "label",
+                "label": {
+                  "en": "Hardware version"
+                }
+              },
+              {
+                "id": "fv",
+                "type": "label",
+                "label": {
+                  "en": "Firmware version"
+                }
+              }
+            ]
           }
         ]
       },
@@ -2107,6 +2137,32 @@
             "name": "my_device",
             "type": "device",
             "filter": "driver_id=switchBox"
+          }
+        ]
+      },
+      {
+        "id": "dimmerbox_turned_on_from_outside",
+        "title": {
+          "en": "Turned On outside of Homey"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=dimmerBox"
+          }
+        ]
+      },
+      {
+        "id": "dimmerbox_turned_off_from_outside",
+        "title": {
+          "en": "Turned Off outside of Homey"
+        },
+        "args": [
+          {
+            "name": "my_device",
+            "type": "device",
+            "filter": "driver_id=dimmerBox"
           }
         ]
       }

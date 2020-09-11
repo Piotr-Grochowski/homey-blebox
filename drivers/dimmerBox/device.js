@@ -22,8 +22,39 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 		this.registerCapabilityListener('onoff', this.onCapabilityOnoff.bind(this));
 		this.registerCapabilityListener('dim', this.onCapabilityDim.bind(this));
 
-		// Enable device polling
-		this.emit('poll');
+		util.sendGetCommand('/api/device/state',this.getSetting('address'))
+		.then(result => {
+			if(result.device.type=='dimmerBox' && result.device.id==this.getData().id)
+			{
+				this.setSettings({
+					product: result.device.type,
+					hv: result.device.hv,
+					fv: result.device.fv
+				});
+				this.polling = true;
+				this.pinging = false;
+						
+				// Enable device polling
+				this.emit('poll');
+			}
+			else
+			{
+				this.log('Device is not reachable, pinging every 60 seconds to see if it comes online again.');
+				this.polling = false;
+				this.pinging = true;
+
+				// Enable device pinging
+				this.emit('ping');
+			}
+
+		})
+		.catch(error => {
+			this.log('Device is not reachable, pinging every 60 seconds to see if it comes online again.');
+			this.polling = false;
+			this.pinging = true;
+			// Enable device pinging
+			this.emit('ping');
+		})
 	}
 
 	async pollDevice() 
@@ -52,6 +83,25 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 						.catch( err => {
 							this.error(err);
 						})
+
+						let tokens = {};
+						let states = {};
+	
+						this._driver = this.getDriver();
+						if(onState==false)
+						{
+							this._driver.ready(() => {
+									this._driver.triggerTurnedOffFromOutside( this, tokens, states );
+								});
+						}
+						else
+						{
+							this._driver.ready(() => {
+									this._driver.triggerTurnedOnFromOutside( this, tokens, states );
+								});
+						}
+	
+
 				}
 			})
 			.catch(error => {
