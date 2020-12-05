@@ -153,6 +153,8 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 				hexBrightness = Math.round(this.getSetting('dimOn')*255/100).toString(16);
 			}
 
+			if(hexBrightness.length==1) hexBrightness='0'+hexBrightness;
+
 			// Turn on the device
 			util.sendGetCommand('/s/'+hexBrightness,this.getSetting('address'))
 			.catch(error => {
@@ -167,7 +169,7 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
         else
         {
 			// Turn off the device
-			util.sendGetCommand('/s/0',this.getSetting('address'))
+			util.sendGetCommand('/s/00',this.getSetting('address'))
 			.catch(error => {
 				this.log(error);
 				// Error occured
@@ -184,6 +186,8 @@ module.exports = class dimmerBoxDevice extends Homey.Device {
 	async onCapabilityDim( value, opts ) {
 
 		let hexBrightness = Math.round(value*255).toString(16);
+
+		if(hexBrightness.length==1) hexBrightness='0'+hexBrightness;
 
 		// Dim the device
 		util.sendGetCommand('/s/'+hexBrightness,this.getSetting('address'))

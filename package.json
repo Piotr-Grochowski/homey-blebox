@@ -1,6 +1,6 @@
 {
   "name": "eu.blebox",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Adds support for BleBox devices.",
   "main": "app.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "athom-cli": "^3.0.2",
-    "http-min": "^2.0.1",
+    "http.min": "^2.0.1",
     "npm": "^6.13.6"
   }
 }

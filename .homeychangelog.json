@@ -64,5 +64,8 @@
   },
   "2.4.0": {
     "en": "switchBox driver bugfix (double poll problem). Added information fields to dimmerBox settings page (hardware and firmware versions, product name). Added new flow triggers for dimmerBox device (fires when the device is turned on/off outside of homey - e.g. with a wall switch)."
+  },
+  "2.4.1": {
+    "en": "Bugfix for dimmerBox v2"
   }
 }

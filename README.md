@@ -20,6 +20,9 @@ At the moment this app supports the following devices:
 - doorBox - an integrated, miniature controller: electric bolt lock, electric strikes and safety devices designed for access control
 
 # Changelog
+v.2.4.1
+- bugfix for dimmerBox v2
+
 v.2.4.0
 - switchBox driver bugfix (double poll problem)
 - added information fields to dimmerBox settings page (hardware and firmware versions, product name)
